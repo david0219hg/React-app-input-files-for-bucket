@@ -1,5 +1,5 @@
 import React from "react"
-import {Grid} from "@mui/material";
+import {Grid, Typography, Input} from "@mui/material";
 
 const AWS = require('aws-sdk');
 const ID = '';
@@ -26,15 +26,17 @@ export const App = () => {
 
     return (
         <>
-        <Grid container direction="column" alignItems="center" justifyContent="center">
-            <h1> Sube tu archivo .json para que se guarde en nuestro bucket de s3</h1>
-            <h2> Luego, los datos del archivo serán guardados en DynamoDB</h2>
-            <br></br>
-            <br></br>
-            <input
+        <Grid container style={{ height: '30vh'}} alignItems="center" justifyContent="center" >
+        <Typography variant="h3">Semillero de AWS</Typography>
+        </Grid>
+        
+        <Grid container  direction="column" style={{ height: '40vh' }} alignItems="center" justifyContent="center" >
+            <Typography variant="h4"  gutterBottom="true">   Sube tu archivo .json para que se guarde en nuestro bucket de s3</Typography>
+            <Typography variant="h4" gutterBottom="true">   Luego, los datos del archivo serán guardados en DynamoDB</Typography>
+            <Input  color="primary"
+            disableUnderline="false" 
             accept=".json"
             id="contained-button-file"
-            multiple
             type="file"
             onChange={handleFileInput}
             />
