@@ -1,3 +1,5 @@
+# for running the docker first build the image and then use docker run  -p 3000:3000 <image-id-or-name>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
