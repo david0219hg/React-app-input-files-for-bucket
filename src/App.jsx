@@ -4,8 +4,8 @@ import {Grid, Typography, Input} from "@mui/material";
 const AWS = require('aws-sdk');
 const ID = '';
 const SECRET = '';
-const REGION = '';
-const BUCKET_NAME = 'bucket-semillero2';
+const REGION = 'us-east-1';
+const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
 
@@ -15,13 +15,22 @@ export const App = () => {
         secretAccessKey: SECRET
     });
 
-    const myBucket = new AWS.S3({
-        params: { Bucket: BUCKET_NAME},
-        region: REGION,
-    })
+    const s3 = new AWS.S3();
+
 
     const handleFileInput = (event) => {
-        console.log(event.target.files[0])
+        const file = event.target.files[0]
+        const parameters = {Bucket: BUCKET_NAME,
+        Key: 'json_file.json',
+        Body: file
+        };
+        s3.upload(parameters, (err, data) => {
+            console.log(data)
+            if (err) {
+              console.log(err);
+            } else {
+              console.log(`Archivo subido a S3: ${data.Location}`)};
+        });
     };
 
     return (
