@@ -2,21 +2,11 @@ import React from "react"
 import {Grid, Typography, Input} from "@mui/material";
 
 const AWS = require('aws-sdk');
-const ID = '';
-const SECRET = '';
-const REGION = 'us-east-1';
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
 
-
-    AWS.config.update({
-        accessKeyId: ID,
-        secretAccessKey: SECRET
-    });
-
     const s3 = new AWS.S3();
-
 
     const handleFileInput = (event) => {
         const file = event.target.files[0]
