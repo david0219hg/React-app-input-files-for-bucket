@@ -16,7 +16,7 @@ export const App = () => {
             console.log(typeof response,response)
     
         } catch (error) {
-            
+            console.log(error)
         }    
         return response
     }
