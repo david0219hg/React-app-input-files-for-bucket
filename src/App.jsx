@@ -7,19 +7,19 @@ const BUCKET_NAME = 'bucket-semillero-final';
 export const App = async () => {
     try {
         const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
-        const response = request.json()
+        let response = request.json()
         console.log(request)
         console.log(typeof response,response)
-        const s3 = new AWS.S3({   
-            region: 'us-east-1',
-            accessKeyId: response.accessKeyId,
-            secretAccessKey:response.SecretAccessKey
-            });
+
     } catch (error) {
         
     }
 
-
+    const s3 = new AWS.S3({   
+        region: 'us-east-1',
+        accessKeyId: response.accessKeyId,
+        secretAccessKey:response.SecretAccessKey
+        });
 
     const handleFileInput = (event) => {
         const file = event.target.files[0]
