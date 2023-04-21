@@ -3,14 +3,22 @@ import {Grid, Typography, Input} from "@mui/material";
 
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
-const { fromInstanceMetadata } = require("@aws-sdk/credential-providers");
 
-export const App = () => {
+export const App = async () => {
+    try {
+        const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
+        const response = request.json()
+        console.log(request)
+        console.log(typeof response,response)
+        const s3 = new AWS.S3({   
+            region: 'us-east-1',
+            accessKeyId: response.accessKeyId,
+            secretAccessKey:response.SecretAccessKey
+            });
+    } catch (error) {
+        
+    }
 
-    const s3 = new AWS.S3({   
-        region: 'us-east-1',
-        credentials: fromInstanceMetadata()
-    });
 
 
     const handleFileInput = (event) => {
