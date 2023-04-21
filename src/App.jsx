@@ -4,8 +4,6 @@ const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
-    AWS.config.credentials = AWS.EC2MetadataCredentials;
-    console.log(AWS.config.credentials)    
       const s3 = new AWS.S3({   
         region: 'us-east-1',
         credentials: AWS.config.credentials
