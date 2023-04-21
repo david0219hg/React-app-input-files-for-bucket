@@ -6,7 +6,14 @@ const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
 
-    const s3 = new AWS.S3();
+    AWS.config.credentials = AWS.EC2MetadataCredentials({
+        httpOptions: { timeout: 5000 }});
+      
+
+    const s3 = new AWS.S3({
+            credentials: AWS.config.credentials,
+            region: 'us-east-1'
+    });
 
     const handleFileInput = (event) => {
         const file = event.target.files[0]
