@@ -8,9 +8,10 @@ export const App = async () => {
     let response = null
     try {
         const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
-        response = request.json()
         console.log(request)
-        console.log(typeof response,response)
+        //response = request.json()
+        //console.log(request)
+        //console.log(typeof response,response)
 
     } catch (error) {
         
