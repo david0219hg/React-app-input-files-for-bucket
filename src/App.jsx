@@ -3,17 +3,13 @@ import {Grid, Typography, Input} from "@mui/material";
 
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
+const { fromInstanceMetadata } = require("@aws-sdk/credential-providers");
 
 export const App = () => {
 
-    const metadata = new AWS.MetadataService();
-    metadata.request('/latest/meta-data/iam/security-credentials/access_s3_final', function(role) {
-        console.log(role)
-        AWS.Credentials(role.AccessKeyId, role.SecretAccessKey, role.Token);
-    });
-
     const s3 = new AWS.S3({   
-        region: 'us-east-1'
+        region: 'us-east-1',
+        credentials: fromInstanceMetadata()
     });
 
 
