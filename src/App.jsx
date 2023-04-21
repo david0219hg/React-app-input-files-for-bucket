@@ -7,8 +7,9 @@ const BUCKET_NAME = 'bucket-semillero-final';
 export const App = () => {
 
     const request = new AWS.HttpRequest('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final');
-    console.log(request)
-
+    const response = request.send().then(
+        response => console.log(response.body.toString())
+    );
     const s3 = new AWS.S3({   
         region: 'us-east-1',
         accessKeyId: request.body.accessKeyId,
