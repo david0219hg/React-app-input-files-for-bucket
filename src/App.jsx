@@ -9,8 +9,8 @@ const BUCKET_NAME = "bucket-semillero-final";
 
 export const App = () => {
     AWS.config.update({
-        accessKeyId: '',
-        secretAccessKey: ''
+        accessKeyId: 'AKIAV7BV7KRP62XU34FA',
+        secretAccessKey: 'AKIAV7BV7KRP62XU34FA'
     });
     const s3 = new AWS.S3();
   const handleFileInput = (event) => {
