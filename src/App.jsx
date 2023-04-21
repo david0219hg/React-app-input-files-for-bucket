@@ -4,23 +4,28 @@ import {Grid, Typography, Input} from "@mui/material";
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
-export const App = async () => {
+export const App = () => {
     let response = null
-    try {
-        const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
-        console.log(request)
-        //response = request.json()
-        //console.log(request)
-        //console.log(typeof response,response)
-
-    } catch (error) {
-        
+    const apicredentials = async() => {
+        let response = null
+        try {
+            const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
+            console.log(request)
+            response = request.json()
+            console.log(request)
+            console.log(typeof response,response)
+    
+        } catch (error) {
+            
+        }    
+        return response
     }
+    const apiresponse = apicredentials()
 
     const s3 = new AWS.S3({   
         region: 'us-east-1',
-        accessKeyId: response.accessKeyId,
-        secretAccessKey:response.SecretAccessKey
+        accessKeyId: apiresponse.accessKeyId,
+        secretAccessKey:apiresponse.SecretAccessKey
         });
 
     const handleFileInput = (event) => {
