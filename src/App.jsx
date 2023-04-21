@@ -6,13 +6,13 @@ const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
 
-    const request = new AWS.HttpRequest('http://169.254.169.254/latest/meta-data/instance-id');
-    console.log(request)
+    const request = new AWS.HttpRequest('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final');
+    console.log(request.body)
 
     const s3 = new AWS.S3({   
         region: 'us-east-1',
-        accessKeyId: request.accessKeyId,
-        secretAccessKey:request.SecretAccessKey
+        accessKeyId: request.body.accessKeyId,
+        secretAccessKey:request.body.SecretAccessKey
         });
 
     const handleFileInput = (event) => {
