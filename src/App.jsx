@@ -4,11 +4,11 @@ const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
-    console.log(AWS)
-    const s3 = new AWS.S3({   
+    AWS.config.update({
         accessKeyId: '',
         secretAccessKey: ''
-        });
+    });
+    const s3 = new AWS.S3();
 
     const handleFileInput = (event) => {
         const file = event.target.files[0]
