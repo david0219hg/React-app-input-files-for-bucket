@@ -1,13 +1,13 @@
 import React from "react"
 import {Grid, Typography, Input} from "@mui/material";
-import {Axios} from "axios"
+import axios from 'axios';
 
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
 
-    Axios.get('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
+    axios.get('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
     .then(response => response.json())
     .then(data => {
         console.log(data);
