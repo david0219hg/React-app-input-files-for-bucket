@@ -4,15 +4,14 @@ import {Grid, Typography, Input} from "@mui/material";
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
+
 export const App = () => {
 
-    const request = new AWS.HttpRequest('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final');
-    const response = request.send();
-    console.log(response)
+
     const s3 = new AWS.S3({   
         region: 'us-east-1',
-        accessKeyId: request.body.accessKeyId,
-        secretAccessKey:request.body.SecretAccessKey
+        accessKeyId: '',
+        secretAccessKey:''
         });
 
     const handleFileInput = (event) => {
