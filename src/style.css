@@ -1,0 +1,138 @@
+:root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+@media (max-width: 767px) {
+  .card-content {
+    flex-direction: column !important;
+  }
+  .title {
+    padding: 1.25rem;
+  }
+  .aws-logo {
+    margin-left: 0px !important;
+  }
+  .header {
+    flex-direction: column !important;
+  }
+  .card-content-block-2 {
+    display: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .upload-image {
+    width: 18.75rem !important;
+    height: 18.75rem !important;
+  }
+  .title {
+    font-size: 0.9375rem !important;
+  }
+  .aws-logo {
+    width: 2.5rem !important;
+    height: auto !important;
+  }
+  .text {
+    font-size: 0.6875rem !important;
+  }
+}
+
+.card {
+  width: 90vw;
+  min-height: 80vh;
+  background: #243242;
+  border-radius: 1.5625rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content-block-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  padding: 1.875rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.title {
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #ffff;
+}
+
+.aws-logo {
+  margin-left: 0.9375rem;
+  width: 6.25rem;
+  height: 3.125rem;
+}
+
+.upload-box {
+  width: 15.625rem;
+  height: 18.75rem;
+  margin-bottom: 0.625rem;
+  border: 0.125rem dashed #ffff;
+  border-radius: 1.5625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-input-file {
+  width: 11.25rem;
+  height: 3rem;
+  background-color: #ffb859;
+  box-shadow: 0px 4px 4px #cc7500;
+  color: #000000;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  margin: 0 auto 0;
+  overflow: hidden;
+  padding: 0.625rem;
+  position: relative;
+  text-align: center;
+}
+
+.custom-input-file .input-file {
+  border: 625rem solid transparent;
+  cursor: pointer;
+  font-size: 625rem;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  position: absolute;
+  right: -62.5rem;
+  top: -62.5px;
+}
+
+.text {
+  font-size: 0.9375rem;
+  font-weight: bold;
+  color: #ffff;
+  text-align: center;
+}
+
+.footer {
+  width: 100%;
+}
+
+.upload-image {
+  width: 31.25rem;
+  height: 31.25rem;
+}

@@ -1,45 +1,68 @@
-import React from "react"
-import {Grid, Typography, Input} from "@mui/material";
+import React from "react";
 
-const AWS = require('aws-sdk');
-const BUCKET_NAME = 'bucket-semillero-final';
+import awsLogo from "./assets/images/awsLogo.png";
+import upload from "./assets/images/upload.png";
+import "./style.css";
+
+const AWS = require("aws-sdk");
+const BUCKET_NAME = "bucket-semillero-final";
 
 export const App = () => {
+  const s3 = new AWS.S3();
 
-    const s3 = new AWS.S3();
-
-    const handleFileInput = (event) => {
-        const file = event.target.files[0]
-        const parameters = {Bucket: BUCKET_NAME,
-        Key: 'json_file.json',
-        Body: file
-        };
-        s3.upload(parameters, (err, data) => {
-            console.log(data)
-            if (err) {
-              console.log(err);
-            } else {
-              console.log(`Archivo subido a S3: ${data.Location}`)};
-        });
+  const handleFileInput = (event) => {
+    const file = event.target.files[0];
+    const parameters = {
+      Bucket: BUCKET_NAME,
+      Key: "json_file.json",
+      Body: file,
     };
+    s3.upload(parameters, (err, data) => {
+      console.log(data);
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(`Archivo subido a S3: ${data.Location}`);
+      }
+    });
+  };
 
-    return (
-        <>
-        <Grid container style={{ height: '30vh'}} alignItems="center" justifyContent="center" >
-        <Typography variant="h3">Semillero de AWS</Typography>
-        </Grid>
-        
-        <Grid container  direction="column" style={{ height: '40vh' }} alignItems="center" justifyContent="center" >
-            <Typography variant="h4"  gutterBottom="true">   Sube tu archivo .json para que se guarde en nuestro bucket de s3</Typography>
-            <Typography variant="h4" gutterBottom="true">   Luego, los datos del archivo serán guardados en DynamoDB</Typography>
-            <Input  color="primary"
-            disableUnderline="false" 
-            accept=".json"
-            id="contained-button-file"
-            type="file"
-            onChange={handleFileInput}
-            />
-        </Grid>      
-        </>
-    )  
+  return (
+    <>
+      <div className="card">
+        <div className="card-content">
+          <div className="card-content-block-1">
+            <div className="header">
+              <span className="title">Semillero de</span>
+              <img src={awsLogo} alt="AWS logo" className="aws-logo" />
+            </div>
+            <div className="upload-box">
+              <div className="custom-input-file">
+                <label htmlFor="inputFile"></label>
+                <input
+                  type="file"
+                  accept=".json"
+                  id="inputFile"
+                  className="input-file"
+                  onChange={handleFileInput}
+                />
+                Subir archivo...
+              </div>
+            </div>
+            <div className="footer">
+              <p className="text">
+                Sube tu archivo .json para que se guarde en nuestro bucket de s3
+              </p>
+              <p className="text">
+                Luego, los datos del archivo serán guardados en DynamoDB
+              </p>
+            </div>
+          </div>
+          <div className="card-content-block-2">
+            <img src={upload} alt="Upload cloud" className="upload-image" />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
