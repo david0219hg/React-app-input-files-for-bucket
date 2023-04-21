@@ -9,7 +9,7 @@ export const App = () => {
     const apicredentials = async() => {
         let response = null
         try {
-            const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
+            const request = await AWS.HttpRequest('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
             console.log(request)
             response = request.json()
             console.log(request)
