@@ -5,27 +5,14 @@ const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = () => {
-    let response = null
-    const apicredentials = async() => {
-        let response = null
-        try {
-            const request = await AWS.HttpRequest('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
-            console.log(request)
-            response = request.json()
-            console.log(request)
-            console.log(typeof response,response)
-    
-        } catch (error) {
-            console.log(error)
-        }    
-        return response
-    }
-    const apiresponse = apicredentials()
+
+    const request = new AWS.HttpRequest('http://169.254.169.254/latest/meta-data/instance-id');
+    const response = request.json();
 
     const s3 = new AWS.S3({   
         region: 'us-east-1',
-        accessKeyId: apiresponse.accessKeyId,
-        secretAccessKey:apiresponse.SecretAccessKey
+        accessKeyId: response.accessKeyId,
+        secretAccessKey:response.SecretAccessKey
         });
 
     const handleFileInput = (event) => {
