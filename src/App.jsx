@@ -5,9 +5,10 @@ const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
 export const App = async () => {
+    let response = null
     try {
         const request = await fetch('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
-        let response = request.json()
+        response = request.json()
         console.log(request)
         console.log(typeof response,response)
 
