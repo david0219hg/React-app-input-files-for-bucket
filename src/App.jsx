@@ -6,8 +6,8 @@ const BUCKET_NAME = 'bucket-semillero-final';
 export const App = () => {
     console.log(AWS)
     const s3 = new AWS.S3({   
-        accessKeyId: AWS.config.credentials.accessKeyId,
-        secretAccessKey: AWS.config.credentials.secretAccessKey
+        accessKeyId: '',
+        secretAccessKey: ''
         });
 
     const handleFileInput = (event) => {
