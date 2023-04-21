@@ -1,18 +1,24 @@
 import React from "react"
 import {Grid, Typography, Input} from "@mui/material";
+import {axios} from "axios"
 
 const AWS = require('aws-sdk');
 const BUCKET_NAME = 'bucket-semillero-final';
 
-
 export const App = () => {
 
-
+    axios.get('http://169.254.169.254/latest/meta-data/iam/security-credentials/access_s3_final')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error during request:', error);
+    });
     const s3 = new AWS.S3({   
         region: 'us-east-1',
         accessKeyId: '',
-        secretAccessKey:''
-        });
+        secretAccessKey:''});
 
     const handleFileInput = (event) => {
         const file = event.target.files[0]
