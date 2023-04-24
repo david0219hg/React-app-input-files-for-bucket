@@ -7,23 +7,18 @@ import "./style.css";
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
 
-const getCredentials = async () => {
-  try{
-    AWS.CredentialProviderChain.defaultProviders = [
-      function () { return new AWS.SharedIniFileCredentials({profile: 'default' }); }
-    ];
-      const chain = new AWS.CredentialProviderChain();
-    const credentialsResponse = await chain.resolvePromise();
-    console.log(credentialsResponse)
-    
-  }
-  catch(error){
-    console.log(error)
-  }
+AWS.CredentialProviderChain.defaultProviders = [
+  function () { return new AWS.EnvironmentCredentials('AWS'); },
+  function () { return new AWS.EnvironmentCredentials('AMAZON'); },
+  function () { return new AWS.SharedIniFileCredentials({profile: 'default' }); },
+  function () { return new AWS.EC2MetadataCredentials(); }
+];
 
+var chain = new AWS.CredentialProviderChain();
 
-}
-getCredentials();
+chain.resolve((err, cred)=>{
+	AWS.config.credentials = cred;
+})
 
 export const App = () => {  
   
