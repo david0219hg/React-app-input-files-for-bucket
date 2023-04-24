@@ -8,7 +8,6 @@ const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
 
 var chain = new AWS.CredentialProviderChain([
-  new AWS.EnvironmentCredentials("AWS"),
   new AWS.SharedIniFileCredentials(),
   new AWS.EC2MetadataCredentials(),
   new AWS.SharedIniFileCredentials({ profile: 'david' })
