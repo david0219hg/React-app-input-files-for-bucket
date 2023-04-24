@@ -6,11 +6,13 @@ import "./style.css";
 
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
+const credentials = new AWS.CredentialProviderChain().resolveSync();
 
 export const App = () => {
-  console.log(AWS)
+  console.log(credentials)
+
   
-  const s3 = new AWS.S3();
+  const s3 = new AWS.S3({credentials:credentials});
   const handleFileInput = (event) => {
     const file = event.target.files[0];
     const parameters = {
