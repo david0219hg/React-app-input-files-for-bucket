@@ -6,7 +6,7 @@ import "./style.css";
 
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
-const credentials = new AWS.CredentialProviderChain().resolveSync();
+const credentials = new AWS.CredentialProviderChain();
 
 export const App = () => {
   console.log(credentials)
