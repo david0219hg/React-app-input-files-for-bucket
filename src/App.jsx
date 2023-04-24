@@ -20,6 +20,7 @@ chain.defaultProviders = [
 
 chain.resolve((err, cred)=>{
 	AWS.config.credentials = cred;
+  console.log(cred)
 })
 
 export const App = () => {  
