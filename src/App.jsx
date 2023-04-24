@@ -6,16 +6,19 @@ import "./style.css";
 
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
-const chain = new AWS.CredentialProviderChain();
+
+const getCredentials = async () => {
+  try{
+    const chain = new AWS.CredentialProviderChain();
+    const credentialsResponse = await chain.resolvePromise();
+    console.log(credentialsResponse)
+  }
+  catch(error){
+    console.log(error)
+  }
 
 
-chain.resolvePromise().then(credentials => {
-  console.log(credentials.accessKeyId);
-  console.log(credentials.secretAccessKey);
-})
-.catch(err => {
-  console.error(err);
-});
+}
 
 
 export const App = () => {  
