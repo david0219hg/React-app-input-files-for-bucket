@@ -7,20 +7,10 @@ import "./style.css";
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
 
-var chain = new AWS.CredentialProviderChain([
-  new AWS.SharedIniFileCredentials(),
-  new AWS.EC2MetadataCredentials(),
-  new AWS.SharedIniFileCredentials({ profile: 'david' })
-  
-]);
-
-chain.defaultProviders = [
-  function () { return new AWS.SharedIniFileCredentials({ profile: 'david' }); }
-];
 
 export const App = () => {  
   
-  const s3 = new AWS.S3({credentialProvider: chain});
+  const s3 = new AWS.S3();
   const handleFileInput = (event) => {
     const file = event.target.files[0];
     const parameters = {
