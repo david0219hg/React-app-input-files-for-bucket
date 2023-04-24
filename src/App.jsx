@@ -10,10 +10,7 @@ const BUCKET_NAME = "bucket-semillero-final";
 var chain = new AWS.CredentialProviderChain();
 
 chain.defaultProviders = [
-  function () { return new AWS.EnvironmentCredentials('AWS'); },
-  function () { return new AWS.EnvironmentCredentials('AMAZON'); },
-  function () { return new AWS.SharedIniFileCredentials({profile: 'default' }); },
-  function () { return new AWS.EC2MetadataCredentials(); }
+  function () { return new AWS.SharedIniFileCredentials({profile: 'default' }); }
 ];
 
 
