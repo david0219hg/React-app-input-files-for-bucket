@@ -17,9 +17,10 @@ chain.resolvePromise().then(credentials => {
   console.error(err);
 });
 
+
 export const App = () => {  
   
-  const s3 = new AWS.S3({credentials:credentials});
+  const s3 = new AWS.S3();
   const handleFileInput = (event) => {
     const file = event.target.files[0];
     const parameters = {
