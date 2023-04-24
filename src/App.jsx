@@ -19,7 +19,7 @@ const getCredentials = async () => {
 
 
 }
-
+getCredentials();
 
 export const App = () => {  
   
