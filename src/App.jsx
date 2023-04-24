@@ -10,7 +10,7 @@ const credentials = new AWS.Credentials();
 
 export const App = () => {
   console.log(credentials)
-  console.log(AWS.EnvironmentCredentials())
+  console.log(AWS.EnvironmentCredentials)
   console.log(AWS.EC2MetadataCredentials())
 
   
