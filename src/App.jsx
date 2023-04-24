@@ -6,13 +6,18 @@ import "./style.css";
 
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
-const credentials = new AWS.Credentials();
+const chain = new AWS.CredentialProviderChain();
 
-export const App = () => {
-  console.log(credentials)
-  console.log(AWS.EnvironmentCredentials)
-  console.log(AWS.EC2MetadataCredentials)
 
+chain.resolvePromise().then(credentials => {
+  console.log(credentials.accessKeyId);
+  console.log(credentials.secretAccessKey);
+})
+.catch(err => {
+  console.error(err);
+});
+
+export const App = () => {  
   
   const s3 = new AWS.S3({credentials:credentials});
   const handleFileInput = (event) => {
