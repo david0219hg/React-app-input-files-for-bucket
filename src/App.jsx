@@ -9,9 +9,13 @@ const BUCKET_NAME = "bucket-semillero-final";
 
 const getCredentials = async () => {
   try{
+    AWS.CredentialProviderChain.defaultProviders = [
+      function () { return new AWS.EC2MetadataCredentials(); }
+    ];
     const chain = new AWS.CredentialProviderChain();
     const credentialsResponse = await chain.resolvePromise();
     console.log(credentialsResponse)
+    
   }
   catch(error){
     console.log(error)
