@@ -1,18 +1,22 @@
 import React from "react";
-
+import { useState } from 'react';
 import awsLogo from "./assets/images/awsLogo.png";
 import upload from "./assets/images/upload.png";
 import "./style.css";
-
 const AWS = require("aws-sdk");
 const BUCKET_NAME = "bucket-semillero-final";
 
+export const App = () => {
+  const [file, setFile] = useState('');
 
-export const App = () => {  
-  
+  AWS.config.update({
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY
+  });  
+
   const s3 = new AWS.S3();
   const handleFileInput = (event) => {
-    const file = event.target.files[0];
+    setFile(event.target.files[0]);
     const parameters = {
       Bucket: BUCKET_NAME,
       Key: "json_file.json",
