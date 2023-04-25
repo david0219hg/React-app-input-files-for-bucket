@@ -16,7 +16,10 @@ export const App = () => {
 
   const s3 = new AWS.S3();
   const handleFileInput = (event) => {
-    setFile(event.target.files[0]);
+    
+    if (event.target.files[0]){
+      setFile(event.target.files[0]);
+    }
     const parameters = {
       Bucket: BUCKET_NAME,
       Key: "json_file.json",
